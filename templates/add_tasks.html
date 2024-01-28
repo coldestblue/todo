@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ToDo List</title>
+</head>
+<body>
+<form method="POST" action="{{url_for('add_task') }}">
+    Title: <input type="text" name="title"><br>
+    Deadline: <input type="date" name="deadline"><br>
+    Weight: <input type="number" name="weight"><br>
+    <input type="submit" value="Add Task">
+</form>
+
+<ul>
+    {% for task in tasks %}
+    <li>
+        {{ task.title }} - {{ task.user_id }} - {{ task.weight }} Weight
+        {% if task.complete %}
+            (Completed)
+        {% else %}
+            <a href="{{url_for('update_task', task_id=task_id)}}">Mark as Complete</a>
+        {% endif %}
+    </li>
+
+{% endfor %}
+</ul>
+
+</body>
+
+</html>

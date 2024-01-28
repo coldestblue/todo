@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+<a href="{{ url_for('user_tasks') }}">Add a Task</a>
+
+<h1>Task List</h1>
+<ul>
+    {% for task in tasks %}
+    <li>
+        Title: {{ task.title }},
+        Weight: {{ task.weight_user }},
+        Deadline: {{task.deadline}},
+        Status: {{ 'Complete' if task.complete else 'Incomplete' }},
+        Task List: {{task.task_list_id}},
+        Task ID: {{task.id}}
+        <a href="/update/{{ task.id }}">Update</a>
+    </li>
+    {% else %}
+    <p>No tasks available.</p>
+    {% endfor %}
+</ul>
+
+
+
+</body>
+</html>
